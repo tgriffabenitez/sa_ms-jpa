@@ -23,18 +23,42 @@ public class Empleado {
     @Column(name="apellido", nullable = false)
     private String apellido;
 
-    // relacion uno a uno "comun"
+
+    /*
+    * Relacion OneToOne "tradicional"
+    *
+    * En este caso, la entidad Empleado tiene una referencia a la entidad Domicilio a través de la anotación @OneToOne
+    * y la anotación @JoinColumn indica que la clave foránea se almacena en la columna "domicilio_id" de la tabla
+    * Empleado.
+    */
     @OneToOne
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
-    // relacion uno a uno compartiendo id
+
+    /*
+    * Relacion OneToOne "compartiendo id"
+    *
+    * En este caso, la entidad Empleado tiene una referencia a la entidad CuentaBancaria a través de la anotación
+    * @OneToOne y la anotación @MapsId indica que la clave primaria de la entidad Empleado también se utiliza como
+    * clave primaria para la entidad CuentaBancaria. La anotación @JoinColumn indica que la clave foránea se almacena en
+    * la columna "cuenta_bancaria_id" de la tabla Empleado.
+    */
     @OneToOne
     @MapsId
     @JoinColumn(name="cuenta_bancaria_id")
     private CuentaBancaria cuentaBancaria;
 
-    // relacion uno a uno con tabla intermedia
+
+    /*
+    * Relacion OneToOne "creando tabla intermedia"
+    *
+    * En este caso, la entidad Empleado tiene una referencia a la entidad Contrato a través de la anotación @OneToOne y
+    * la anotación @JoinTable indica que la relación se mapea a través de una tabla intermedia llamada "empleado_contrato".
+    * La anotación @JoinColumn especifica la columna en la tabla intermedia que se utiliza para la clave foránea de la
+    * entidad Empleado. La anotación @inverseJoinColumns especifica la columna en la tabla intermedia que se utiliza para
+    * la clave foránea de la entidad Contrato.
+    */
     @OneToOne
     @JoinTable(name = "empleado_contrato",
             joinColumns = @JoinColumn(name = "empleado_id"),
