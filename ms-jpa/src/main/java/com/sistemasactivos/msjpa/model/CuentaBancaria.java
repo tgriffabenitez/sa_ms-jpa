@@ -27,6 +27,12 @@ public class CuentaBancaria {
     @Column(name="tipo", nullable = false)
     private String tipo;
 
+    /*
+    * La anotación @PrimaryKeyJoinColumn indica que la clave primaria de la entidad Empleado se utilizará como clave
+    * foránea en la tabla de la entidad CuentaBancaria. Esto significa que la tabla CuentaBancaria tendrá una columna
+    * con el mismo nombre que la clave primaria de la tabla Empleado y que esta columna será utilizada para establecer
+    * la relación entre las dos entidades.
+    */
     @OneToOne(mappedBy = "cuentaBancaria")
     @PrimaryKeyJoinColumn
     private Empleado empleado;
