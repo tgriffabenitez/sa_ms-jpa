@@ -6,27 +6,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="rol")
-public class Rol {
+@Table(name="domicilio")
+public class Domicilio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", length = 3, nullable = false)
     private Long id;
 
-    @Column(name="rol", nullable = false)
-    private String rol;
+    @Column(name="calle", nullable = false)
+    private String calle;
 
-    @Column(name="descripcion", nullable = false)
-    private String descripcion;
+    @Column(name="numero", nullable = false)
+    private String numero;
 
-    @OneToMany(mappedBy = "rol")
-    private List<Persona> personas;
+    @Column(name="ciudad", nullable = false)
+    private String ciudad;
+
+    @OneToOne(mappedBy = "domicilio")
+    private Empleado empleado;
+
 }

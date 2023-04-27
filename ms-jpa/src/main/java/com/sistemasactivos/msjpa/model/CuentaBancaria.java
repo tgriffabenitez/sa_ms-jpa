@@ -11,18 +11,23 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="usuario")
-public class Usuario {
+@Table(name="cuenta_bancaria")
+public class CuentaBancaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", length = 3, nullable = false)
     private Long id;
 
-    @Column(name="nombre", nullable = false)
-    private String nombre;
+    @Column(name="banco", nullable = false)
+    private String banco;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @Column(name="numero", nullable = false)
+    private String numero;
+
+    @Column(name="tipo", nullable = false)
+    private String tipo;
+
+    @OneToOne(mappedBy = "cuentaBancaria")
     @PrimaryKeyJoinColumn
-    private Contacto contacto;
+    private Empleado empleado;
 }
